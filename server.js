@@ -38,7 +38,7 @@ const collectionCenterRoutes = require('./src/routes/collectionCenters');
 app.use('/departments', departmentRoutes);
 app.use('/municipalities', municipalityRoutes);
 app.use('/districts', districtRoutes);
-app.use('zones', zoneRoutes);
+app.use('/zones', zoneRoutes);
 app.use('/operator-locations', operatorLocationRoutes);
 app.use('/location-notifications', locationNotificationRoutes);
 app.use('/collection-locations', collectionLocationRoutes);
