@@ -2,6 +2,8 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const connectDB = require('./src/config/database');
+const swaggerUi = require("swagger-ui-express");
+const swaggerFile = require("./swagger_output.json");
 
 dotenv.config(); // carga variables .env
 connectDB();     // conecta a MongoDB
@@ -35,17 +37,51 @@ const collectionLocationRoutes = require('./src/routes/collectionLocations');
 const collectionCenterRoutes = require('./src/routes/collectionCenters');
 
 // API routes
-app.use('/departments', departmentRoutes);
-app.use('/municipalities', municipalityRoutes);
-app.use('/districts', districtRoutes);
-app.use('/zones', zoneRoutes);
-app.use('/operator-locations', operatorLocationRoutes);
-app.use('/location-notifications', locationNotificationRoutes);
-app.use('/collection-locations', collectionLocationRoutes);
-app.use('/collection-centers', collectionCenterRoutes);
+app.use('/departments', departmentRoutes 
+    /*
+    #swagger.tags = ['Departments']
+    */
+);
+app.use('/municipalities', municipalityRoutes
+    /*
+    #swagger.tags = ['Municipalities']
+    */
+);
+app.use('/districts', districtRoutes
+    /*
+    #swagger.tags = ['Districts']
+    */
+);
+app.use('/zones', zoneRoutes
+    /*
+    #swagger.tags = ['Zones']
+    */
+);
+app.use('/operator-locations', operatorLocationRoutes
+    /*
+    #swagger.tags = ['Operator Locations']
+    */
+);
+app.use('/location-notifications', locationNotificationRoutes
+    /*
+    #swagger.tags = ['Location Notifications']
+    */
+);
+app.use('/collection-locations', collectionLocationRoutes
+    /*
+    #swagger.tags = ['Collection Locations']
+    */
+);
+app.use('/collection-centers', collectionCenterRoutes
+    /*
+    #swagger.tags = ['Collection Centers']
+    */
+);
+
+// Swagger documentation route
+app.use("/swagger/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 app.listen(PORT, () => {
     console.log(`🚀 Servidor corriendo en http://${hostname}:${PORT}`);
 });
 
-module.exports = app;
