@@ -2,7 +2,7 @@
   "version": 2,
   "functions": {
     "server.js": {
-      "includeFiles": ["node_modules/swagger-ui-dist/**", "swagger-output.json"]
+      "includeFiles": "node_modules/swagger-ui-dist/**"
     }
   },
   "rewrites": [{ "source": "/(.*)", "destination": "/server.js" }]
