@@ -38,7 +38,7 @@ const collectionCenterRoutes = require('./src/routes/collectionCenters');
 
 
 // Swagger documentation route
-app.use("/swagger/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 // API routes
 app.use('/departments', departmentRoutes 
