@@ -1,9 +1,16 @@
 {
   "version": 2,
-  "functions": {
-    "server.js": {
-      "includeFiles": ["node_modules/swagger-ui-dist/**", "swagger-output.json"]
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": [
+          "node_modules/swagger-ui-dist/**",
+          "swagger-output.json"
+        ]
+      }
     }
-  },
+  ],
   "rewrites": [{ "source": "/(.*)", "destination": "/server.js" }]
 }
