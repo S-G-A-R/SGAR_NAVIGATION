@@ -4,7 +4,7 @@ const doc = {
   info: {
     title: "API de Navegación SGAR",
     description: "Documentación de la API para coordenadas y ubicaciones geográficas."},
-  host: "localhost:3000",
+  host: "https://sgar-navigation.vercel.app",
   schemes: ["http"],
 };
 
