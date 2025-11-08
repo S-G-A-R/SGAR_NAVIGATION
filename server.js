@@ -36,6 +36,10 @@ const locationNotificationRoutes = require('./src/routes/locationNotifications')
 const collectionLocationRoutes = require('./src/routes/collectionLocations');
 const collectionCenterRoutes = require('./src/routes/collectionCenters');
 
+
+// Swagger documentation route
+app.use("/swagger/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
+
 // API routes
 app.use('/departments', departmentRoutes 
     /*
@@ -78,8 +82,7 @@ app.use('/collection-centers', collectionCenterRoutes
     */
 );
 
-// Swagger documentation route
-app.use("/swagger/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
+
 
 app.listen(PORT, () => {
     console.log(`🚀 Servidor corriendo en http://${hostname}:${PORT}`);
