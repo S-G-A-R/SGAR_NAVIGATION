@@ -5,7 +5,7 @@ const doc = {
   info: {
     title: "API de Navegación SGAR",
     description: "Documentación de la API para coordenadas y ubicaciones geográficas."},
-  host: isProduction ? "https://sgar-navigation.vercel.app" : "localhost:3000",
+  host: isProduction ? "sgar-navigation.vercel.app" : "localhost:3000",
   schemes: [ isProduction ? "https" : "http" ],
 };
 
