@@ -7,7 +7,8 @@
       "config": {
         "includeFiles": [
           "node_modules/swagger-ui-dist/**",
-          "swagger_output.json"
+          "swagger_output.json",
+          "*.js"
         ]
       }
     }
