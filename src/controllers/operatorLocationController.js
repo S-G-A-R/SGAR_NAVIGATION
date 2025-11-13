@@ -1,9 +1,11 @@
 const OperatorLocation = require('../models/OperatorLocation');
 
 // Get all operator locations
+// Limited to 1000 results for performance
+// Sort by most recent fechaActualizacion
 exports.getOperatorLocations = async (req, res) => {
     try {
-        const locations = await OperatorLocation.find();
+        const locations = await OperatorLocation.find().limit(1000).sort({ fechaActualizacion: -1 });
         res.json(locations);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -34,10 +36,10 @@ exports.getLocationsByOperator = async (req, res) => {
     }
 };
 
-// Get locations by citizen
-exports.getLocationsByCitizen = async (req, res) => {
+// Get locations by shift
+exports.getLocationsByShift = async (req, res) => {
     try {
-        const locations = await OperatorLocation.find({ idCiudadano: req.params.citizenId });
+        const locations = await OperatorLocation.find({ idHorario: req.params.idHorario });
         res.json(locations);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -47,12 +49,10 @@ exports.getLocationsByCitizen = async (req, res) => {
 // Create operator location
 exports.createOperatorLocation = async (req, res) => {
     const location = new OperatorLocation({
-        idCiudadano: req.body.idCiudadano,
-        idOperador: req.body.idOperador,
-        latitud: req.body.latitud,
-        longitud: req.body.longitud,
-        titulo: req.body.titulo,
-        estado: req.body.estado
+      idHorario: req.body.idHorario,
+      idOperador: req.body.idOperador,
+      location: req.body.location,
+      fechaActualizacion: req.body.fechaActualizacion,
     });
 
     try {
@@ -68,12 +68,11 @@ exports.updateOperatorLocation = async (req, res) => {
     try {
         const location = await OperatorLocation.findById(req.params.id);
         if (location) {
-            location.idCiudadano = req.body.idCiudadano || location.idCiudadano;
+            location.idHorario = req.body.idHorario || location.idHorario;
             location.idOperador = req.body.idOperador || location.idOperador;
-            location.latitud = req.body.latitud || location.latitud;
-            location.longitud = req.body.longitud || location.longitud;
-            location.titulo = req.body.titulo || location.titulo;
-            location.estado = req.body.estado || location.estado;
+            location.location = req.body.location || location.location;
+            location.fechaActualizacion =
+              req.body.fechaActualizacion || location.fechaActualizacion;
 
             const updatedLocation = await location.save();
             res.json(updatedLocation);
@@ -103,3 +102,5 @@ exports.deleteOperatorLocation = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+

@@ -6,10 +6,10 @@ const operatorLocationController = require('../controllers/operatorLocationContr
 router.get('/', operatorLocationController.getOperatorLocations);
 
 // Get locations by operator
-router.get('/operator/:operatorId', operatorLocationController.getLocationsByOperator);
+router.get('/operator/:operatorId', operatorLocationController.getLocationsByShift);
 
-// Get locations by citizen
-router.get('/citizen/:citizenId', operatorLocationController.getLocationsByCitizen);
+// Get locations by shift
+router.get('/shift/:shiftId', operatorLocationController.getLocationsByShift);
 
 // Get specific operator location
 router.get('/:id', operatorLocationController.getOperatorLocation);

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const operatorLocationSchema = new mongoose.Schema({
-    idCiudadano: {
+    idHorario: {
         type: Number,
         required: true
     },
@@ -9,24 +9,26 @@ const operatorLocationSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    latitud: {
-        type: Number,
-        required: true
+    location: {
+        type: {
+            type: String,
+            enum: ['Point'],
+            required: true,
+        },
+        coordinates: {
+            type: [Number], //Longitud, Latitud
+            required: true,
+        },
     },
-    longitud: {
-        type: Number,
-        required: true
-    },
-    titulo: {
-        type: String,
-        required: true
-    },
-    estado: {
-        type: Number,
+    fechaActualizacion: {
+        type: Date,
+        default: Date.now,
         required: true
     }
 }, {
     timestamps: true
 });
+
+operatorLocationSchema.index({ location: '2dsphere' });
 
 module.exports = mongoose.model('OperatorLocation', operatorLocationSchema);
