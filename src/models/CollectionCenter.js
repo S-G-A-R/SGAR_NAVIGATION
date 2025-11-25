@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const collectionCenterSchema = new mongoose.Schema({
-    idGestor: {
+    idOrganizacion: {
         type: Number,
         required: true
     },

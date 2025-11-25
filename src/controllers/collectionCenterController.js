@@ -38,14 +38,16 @@ exports.getCollectionCenter = async (req, res) => {
 exports.getCentersByManager = async (req, res) => {
     try {
 
-        const centers = await CollectionCenter.find({ idGestor: req.params.managerId });
-        // #swagger.responses[200] = { description: "Centros de acopio obtenidos exitosamente para el gestor especificado." }
+        const centers = await CollectionCenter.find({
+          idOrganizacion: req.params.idOrganizacion,
+        });
+        // #swagger.responses[200] = { description: "Centros de acopio obtenidos exitosamente para la organización especificada." }
         res.json(centers);
         return res.status(200).send(centers);
     } catch (error) {
-        // #swagger.responses[500] = { description: "Error al obtener los centros de acopio para el gestor especificado." }
-        res.status(500).json({ message: error.message });
-        return res.status(500).send(false);
+      // #swagger.responses[500] = { description: "Error al obtener los centros de acopio para la organización especificada." }
+      res.status(500).json({ message: error.message });
+      return res.status(500).send(false);
     }
 };
 
