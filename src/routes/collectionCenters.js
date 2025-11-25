@@ -6,7 +6,7 @@ const collectionCenterController = require('../controllers/collectionCenterContr
 router.get('/', collectionCenterController.getCollectionCenters);
 
 // Get centers by manager
-router.get('/manager/:managerId', collectionCenterController.getCentersByManager);
+router.get('/manager/:idOrganizacion', collectionCenterController.getCentersByManager);
 
 // Get specific collection center
 router.get('/:id', collectionCenterController.getCollectionCenter);
