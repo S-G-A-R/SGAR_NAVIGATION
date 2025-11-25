@@ -5,6 +5,12 @@ const collectionLocationController = require('../controllers/collectionLocationC
 // Get all collection locations
 router.get('/', collectionLocationController.getCollectionLocations);
 
+// Find collection locations by center ID
+router.get('/centers/:idCenter', collectionLocationController.findCenterById);
+
+// Find nearby collection locations
+router.post('/centers', collectionLocationController.findNearbyLocations);
+
 // Get specific collection location
 router.get('/:id', collectionLocationController.getCollectionLocation);
 

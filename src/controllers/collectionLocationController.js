@@ -10,6 +10,39 @@ exports.getCollectionLocations = async (req, res) => {
     }
 };
 
+// Get all collection locations
+exports.findCenterById = async (req, res) => {
+    try {
+        const locations = await CollectionLocation.find({ idCenter: req.params.idCenter });
+        res.json(locations);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+// Find nearby collection locations
+exports.findNearbyLocations = async (req, res) => {
+    const { lon, lat, radius} = req.body;
+
+    try{
+        const locations = await CollectionLocation.find({
+            location: {
+                $near: {
+                    $geometry: {
+                        type: "Point",
+                        coordinates: [lon, lat]
+                    },
+                    $maxDistance: radius
+                }
+            }
+        }).limit(100);
+        res.json(locations);
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+
 // Get collection location by ID
 exports.getCollectionLocation = async (req, res) => {
     try {
@@ -27,12 +60,12 @@ exports.getCollectionLocation = async (req, res) => {
 // Create collection location
 exports.createCollectionLocation = async (req, res) => {
     const location = new CollectionLocation({
-        idObjectId: req.body.idObjectId,
-        latitud: req.body.latitud,
-        longitud: req.body.longitud,
-        descripcion: req.body.descripcion,
-        horaApertura: req.body.horaApertura,
-        horaCierre: req.body.horaCierre
+      idCenter: req.body.idCenter,
+      latitud: req.body.latitud,
+      longitud: req.body.longitud,
+      descripcion: req.body.descripcion,
+      horaApertura: req.body.horaApertura,
+      horaCierre: req.body.horaCierre,
     });
 
     try {
@@ -48,7 +81,7 @@ exports.updateCollectionLocation = async (req, res) => {
     try {
         const location = await CollectionLocation.findById(req.params.id);
         if (location) {
-            location.idObjectId = req.body.idObjectId || location.idObjectId;
+            location.idCenter = req.body.idCenter || location.idCenter;
             location.latitud = req.body.latitud || location.latitud;
             location.longitud = req.body.longitud || location.longitud;
             location.descripcion = req.body.descripcion || location.descripcion;

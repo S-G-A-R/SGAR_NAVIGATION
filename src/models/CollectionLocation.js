@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const collectionLocationSchema = new mongoose.Schema({
-    idObjectId: {
-        type: Number,
+    idCenter: {
+        type: String,
         required: true
     },
     latitud: {
