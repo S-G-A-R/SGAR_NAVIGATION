@@ -9,7 +9,7 @@ router.get('/', collectionLocationController.getCollectionLocations);
 router.get('/centers/:idCenter', collectionLocationController.findCenterById);
 
 // Find nearby collection locations
-router.post('/centers', collectionLocationController.findNearbyLocations);
+router.get('/centers', collectionLocationController.findNearbyLocations);
 
 // Get specific collection location
 router.get('/:id', collectionLocationController.getCollectionLocation);
