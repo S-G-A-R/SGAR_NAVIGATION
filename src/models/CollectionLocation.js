@@ -7,13 +7,15 @@ const collectionLocationSchema = new mongoose.Schema(
       ref: "CollectionCenter",
       required: true,
     },
-    latitud: {
-      type: Number,
-      required: true,
-    },
-    longitud: {
-      type: Number,
-      required: true,
+    location: {
+      type: {
+        type: String,
+        enum: ['Point'],
+      },
+      coordinates: {
+        type: [Number], // [longitude, latitude]
+        required: true,
+      },
     },
     descripcion: {
       type: String,
