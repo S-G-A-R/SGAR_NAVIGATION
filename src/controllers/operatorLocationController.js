@@ -51,7 +51,10 @@ exports.createOperatorLocation = async (req, res) => {
     const location = new OperatorLocation({
       idHorario: req.body.idHorario,
       idOperador: req.body.idOperador,
-      location: req.body.location,
+      location: {
+        type: "Point",
+        coordinates: [req.body.longitud, req.body.latitud],
+      },
       fechaActualizacion: req.body.fechaActualizacion,
     });
 
@@ -70,7 +73,10 @@ exports.updateOperatorLocation = async (req, res) => {
         if (location) {
             location.idHorario = req.body.idHorario || location.idHorario;
             location.idOperador = req.body.idOperador || location.idOperador;
-            location.location = req.body.location || location.location;
+            location.location = {
+                type: "Point",
+                coordinates: [req.body.longitud, req.body.latitud],
+            } || location.location;
             location.fechaActualizacion =
               req.body.fechaActualizacion || location.fechaActualizacion;
 
