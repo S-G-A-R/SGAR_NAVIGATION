@@ -54,7 +54,7 @@ exports.getCentersByManager = async (req, res) => {
 // Create collection center
 exports.createCollectionCenter = async (req, res) => {
     const center = new CollectionCenter({
-        idGestor: req.body.idGestor,
+        idOrganizacion: req.body.idOrganizacion,
         nombre: req.body.nombre
     });
 
