@@ -1,5 +1,17 @@
 const mongoose = require('mongoose');
 
+const locationSchema = new mongoose.Schema({
+  type: {
+    type: String,
+    enum: ["Point"], // 'location.type' must be 'Point'
+    default: "Point",
+  },
+  coordinates: {
+    type: [Number], // Array of numbers: [longitude, latitude]
+    required: true,
+  },
+});
+
 const collectionLocationSchema = new mongoose.Schema(
   {
     idCenter: {
@@ -8,14 +20,9 @@ const collectionLocationSchema = new mongoose.Schema(
       required: true,
     },
     location: {
-      type: {
-        type: String,
-        enum: ['Point'],
-      },
-      coordinates: {
-        type: [Number], // [longitude, latitude]
-        required: true,
-      },
+      type: locationSchema,
+      index: "2dsphere",
+      required: true,
     },
     descripcion: {
       type: String,
