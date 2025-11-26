@@ -61,7 +61,10 @@ exports.getCollectionLocation = async (req, res) => {
 exports.createCollectionLocation = async (req, res) => {
     const location = new CollectionLocation({
       idCenter: req.body.idCenter,
-      location: req.body.location,
+      location: {
+        type: 'Point',
+        coordinates: [req.body.longitud, req.body.latitud]
+      },
       descripcion: req.body.descripcion,
       horaApertura: req.body.horaApertura,
       horaCierre: req.body.horaCierre,
@@ -81,7 +84,10 @@ exports.updateCollectionLocation = async (req, res) => {
         const location = await CollectionLocation.findById(req.params.id);
         if (location) {
             location.idCenter = req.body.idCenter || location.idCenter;
-            location.location = req.body.location || location.location;
+            location.location = {
+                type: 'Point',
+                coordinates: [req.body.longitud, req.body.latitud]
+            } || location.location;
             location.descripcion = req.body.descripcion || location.descripcion;
             location.horaApertura = req.body.horaApertura || location.horaApertura;
             location.horaCierre = req.body.horaCierre || location.horaCierre;
