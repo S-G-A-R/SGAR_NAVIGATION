@@ -45,44 +45,60 @@ const collectionCenterRoutes = require('./src/routes/collectionCenters');
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 // API routes
-app.use('/departments', departmentRoutes 
+app.use('/api/departments', departmentRoutes 
     /*
     #swagger.tags = ['Departments']
+    #swagger.summary = 'Manage Departments'
+    #swagger.description = 'Operations related to departments'
     */
 );
-app.use('/municipalities', municipalityRoutes
+app.use('/api/municipalities', municipalityRoutes
     /*
     #swagger.tags = ['Municipalities']
+    #swagger.summary = 'Manage Municipalities'
+    #swagger.description = 'Operations related to municipalities'
     */
 );
-app.use('/districts', districtRoutes
+app.use('/api/districts', districtRoutes
     /*
     #swagger.tags = ['Districts']
+    #swagger.summary = 'Manage Districts'
+    #swagger.description = 'Operations related to districts'
     */
 );
-app.use('/zones', zoneRoutes
+app.use('/api/zones', zoneRoutes
     /*
     #swagger.tags = ['Zones']
+    #swagger.summary = 'Manage Zones'
+    #swagger.description = 'Operations related to zones'
     */
 );
-app.use('/operator-locations', operatorLocationRoutes
+app.use('/api/operator-locations', operatorLocationRoutes
     /*
     #swagger.tags = ['Operator Locations']
+    #swagger.summary = 'Manage Operator Locations'
+    #swagger.description = 'Operations related to operator locations'
     */
 );
-app.use('/location-notifications', locationNotificationRoutes
+app.use('/api/location-notifications', locationNotificationRoutes
     /*
     #swagger.tags = ['Location Notifications']
+    #swagger.summary = 'Manage Location Notifications'
+    #swagger.description = 'Operations related to location notifications'
     */
 );
-app.use('/collection-locations', collectionLocationRoutes
+app.use('/api/collection-locations', collectionLocationRoutes
     /*
     #swagger.tags = ['Collection Locations']
+    #swagger.summary = 'Manage Collection Locations'
+    #swagger.description = 'Operations related to collection locations'
     */
 );
-app.use('/collection-centers', collectionCenterRoutes
+app.use('/api/collection-centers', collectionCenterRoutes
     /*
     #swagger.tags = ['Collection Centers']
+    #swagger.summary = 'Manage Collection Centers'
+    #swagger.description = 'Operations related to collection centers'
     */
 );
 
