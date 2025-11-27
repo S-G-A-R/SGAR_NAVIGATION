@@ -29,7 +29,7 @@ exports.findNearbyLocations = async (req, res) => {
             location: {
                 $near: {
                     $geometry: {
-                        type: "Point",
+                        $type: "Point",
                         coordinates: [lon, lat]
                     },
                     $maxDistance: radius
